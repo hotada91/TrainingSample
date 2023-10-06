@@ -37,7 +37,7 @@ test_func()
 {
     echo "Num of params: $#"
     echo "All params: $@"
-    echo "All params: $*"
+    echo "All params: $*" # Difference between $@?
 
     scriptName=$0
     arg1=$1
@@ -48,8 +48,10 @@ test_func()
     # The old $1 disappears, but $0 (the script name) does not change
     shift  
     arg3=$2
-
     echo $scriptName: $arg1 $arg2 $arg3
+
+    echo "Our argument list now is: $@"
+
    
 }
 test_func "One" "Two" "Three"
@@ -68,10 +70,20 @@ fail_func()
 {
     not_existed_command
 }
+fail_func2()
+{
+    return 1
+}
 
 fail_func
 echo "fail_func exit status: $?"
 if [[ $? == 0 ]]; then echo "Result: Success"; fi     # ?
+
+fail_func
+if [[ $? != 0 ]]; then echo "Result: Fail"; fi
+
+fail_func2
+if [[ $? != 0 ]]; then echo "Result: Fail"; fi
 
 success_func
 status=$?

@@ -72,4 +72,25 @@ echo "Repace first match of \"l\" in $myString by \"x\": ${myString/l/x}"
 # ${foo//from/to}	Replace all
 echo "Repace all match of \"l\" in $myString by \"x\": ${myString//l/x}"
 
+# LOWERCASE AND UPPERCASE
+str="HELLO WORLD!"
+echo "${str,}"   #=> "hELLO WORLD!" (lowercase 1st letter)
+echo "${str,,}"  #=> "hello world!" (all lowercase)
 
+str="hello world!"
+echo "${str^}"   #=> "Hello world!" (uppercase 1st letter)
+echo "${str^^}"  #=> "HELLO WORLD!" (all uppercase)
+
+#========================================================================
+# Some real examples
+
+path=/c/Users/70k1537/Documents/Work/TrainingSample/log_0001.text
+# How to get driver letter c
+# How to get folder path : /c/Users/70k1537/Documents/Work/TrainingSample
+# How to get file name
+# How to get the extension
+# How to get file name without extension
+# How to get the index number 0001
+
+string="BASH SHELL IS EASY"
+# Make it become "Bash shell is easy"
