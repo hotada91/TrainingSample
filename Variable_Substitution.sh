@@ -81,6 +81,53 @@ str="hello world!"
 echo "${str^}"   #=> "Hello world!" (uppercase 1st letter)
 echo "${str^^}"  #=> "HELLO WORLD!" (all uppercase)
 
+# ARRAY
+Fruits=('Apple' 'Banana' 'Orange')
+Arr=($(echo el1 el2 el3))
+
+echo $Fruits
+echo $Fruits[0]
+echo ${Fruits[0]}
+echo "${Fruits[@]}"
+
+Fruits[4]="Watermelon"
+Fruits+=('Pineapple')
+Fruits=("${Fruits[@]}" 'Cherry')
+OtherFruits=("Cucumber" "Grape")
+Fruits=$("${Fruits[@]}" "${OtherFruits[@]}")
+echo "$Fruits[@]"
+
+Fruits=( "${Fruits[@]/Ap*/}" )          # Remove by regex match
+echo "${Fruits[@]}"
+
+# Iteration through array
+for i in "${Fruits[@]}"; do  # Remember qoute
+  echo "$i"
+done
+
+# Dictionary
+declare -A sounds # What happend without the declaration
+sounds[dog]="bark"
+sounds[cow]="moo"
+sounds[bird]="tweet"
+sounds[wolf]="howl"
+
+echo "${sounds[dog]}" # Dog's sound
+echo "${sounds[@]}"   # All values
+echo "${!sounds[@]}"  # All keys
+echo "${#sounds[@]}"  # Number of elements
+unset sounds[dog]     # Delete dog
+
+# Iterate over values
+for val in "${sounds[@]}"; do
+  echo "$val"
+done
+
+# Iterate over keys
+for key in "${!sounds[@]}"; do
+  echo "$key"
+done
+
 #========================================================================
 # Some real examples
 
@@ -94,3 +141,4 @@ path=/c/Users/70k1537/Documents/Work/TrainingSample/log_0001.text
 
 string="BASH SHELL IS EASY"
 # Make it become "Bash shell is easy"
+
